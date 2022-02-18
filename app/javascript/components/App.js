@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import CoinIndex from './pages/CoinIndex'
 class App extends Component {
   render() {
     const {
@@ -14,7 +14,9 @@ class App extends Component {
         {logged_in &&
           <div>
             <a href={sign_out_route}>Sign Out</a>
+            <CoinIndex />
           </div>
+          
         }
         {!logged_in &&
           <div>
