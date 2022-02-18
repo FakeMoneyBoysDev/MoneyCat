@@ -1,0 +1,2 @@
+class HoldingsController < ApplicationController
+end
