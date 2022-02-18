@@ -11,7 +11,7 @@ export default function CoinIndex() {
     // this useEffect will run once
     // similar to componentDidMount()
     useEffect(() => {
-      fetch("/coins")
+      fetch("/api/coins")
         .then(res => res.json())
         .then(
           (result) => {
