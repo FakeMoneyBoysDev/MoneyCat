@@ -1,0 +1,22 @@
+{
+    "name": "money-cat",
+    "scripts": {},
+    "addons": [],
+    "buildpacks": [
+      {
+        "url": "heroku/nodejs"
+      },
+      {
+        "url": "heroku/ruby"
+      }
+    ],
+    "environments": {
+      "test": {
+          "formation": {
+            "test": {}
+          },
+          "scripts": {}
+        }
+      },
+      "stack": "heroku-20" 
+    }
