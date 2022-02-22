@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
-import CoinIndex from './pages/CoinIndex'
+import React, { Component } from "react";
+import CoinIndex from "./pages/CoinIndex";
+import Header from "./components/Header";
 class App extends Component {
   render() {
     const {
@@ -7,25 +8,25 @@ class App extends Component {
       current_user,
       new_user_route,
       sign_in_route,
-      sign_out_route
-    } = this.props
-    return(
+      sign_out_route,
+    } = this.props;
+    return (
       <>
-        {logged_in &&
+        <Header />
+        {logged_in && (
           <div>
             <a href={sign_out_route}>Sign Out</a>
             <CoinIndex />
           </div>
-          
-        }
-        {!logged_in &&
+        )}
+        {!logged_in && (
           <div>
             <a href={sign_in_route}>Sign In</a>
           </div>
-        }
+        )}
       </>
-    )
+    );
   }
 }
 
-export default App
+export default App;
