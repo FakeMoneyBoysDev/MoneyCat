@@ -46,13 +46,13 @@ export default class Header extends Component {
               </NavItem> */}
               <NavItem>
                 {logged_in ? (
-                  <a href={sign_out_route}>Sign Out</a>
+                  <a className="nav-link" href={sign_out_route}>Sign Out</a>
                 ) : (
-                  <a href={sign_in_route}>Sign In</a>
+                  <a className="nav-link" href={sign_in_route}>Sign In</a>
                 )}
               </NavItem>
               <NavItem>
-                <a href="https://github.com/reactstrap/reactstrap">GitHub</a>
+                <a className="nav-link" href="https://github.com/reactstrap/reactstrap">GitHub</a>
               </NavItem>
             </Nav>
           </Collapse>
