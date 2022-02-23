@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import CoinIndex from "./pages/CoinIndex";
 import Header from "./components/Header";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import SignIn from "./components/SignIn";
+
 class App extends Component {
   render() {
     const {
@@ -12,18 +15,17 @@ class App extends Component {
     } = this.props;
     return (
       <>
-        <Header />
-        {logged_in && (
-          <div>
-            <a href={sign_out_route}>Sign Out</a>
-            <CoinIndex />
-          </div>
-        )}
-        {!logged_in && (
-          <div>
-            <a href={sign_in_route}>Sign In</a>
-          </div>
-        )}
+        <Router>
+          <Header {...this.props} />
+          <Switch>
+            {/* <Route exact path="/" component={Home} /> */}
+            {/* //<Route path="/catindex" component={CatIndex} /> */}
+            {/* //<Route path="/catshow" component={CatShow} /> */}
+            {/* <Route path="/users/sign_in" component={SignIn} /> */}
+            {/* //<Route path="/catedit" component={CatEdit} /> */}
+            {/* //</Switch></Router>Route component={NotFound} /> */}
+          </Switch>
+        </Router>
       </>
     );
   }
