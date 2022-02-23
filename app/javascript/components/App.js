@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import CoinIndex from "./pages/CoinIndex";
+import Home from "./pages/Home";
+
 import Header from "./components/Header";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -16,7 +18,10 @@ class App extends Component {
       <>
         <Router>
           <Header {...this.props} />
-          <Switch>{<Route exact path="/" component={CoinIndex} />}</Switch>
+          <Switch>
+            {!logged_in && <Route exact path="/" component={CoinIndex} />}
+            {logged_in && <Route exact path="/" component={Home} />}
+          </Switch>
         </Router>
       </>
     );
