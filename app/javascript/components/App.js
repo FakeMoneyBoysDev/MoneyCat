@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import CoinIndex from "./pages/CoinIndex";
+import Home from "./pages/Home";
+
 import Header from "./components/Header";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 class App extends Component {
   render() {
     const {
@@ -12,18 +16,13 @@ class App extends Component {
     } = this.props;
     return (
       <>
-        <Header />
-        {logged_in && (
-          <div>
-            <a href={sign_out_route}>Sign Out</a>
-            <CoinIndex />
-          </div>
-        )}
-        {!logged_in && (
-          <div>
-            <a href={sign_in_route}>Sign In</a>
-          </div>
-        )}
+        <Router>
+          <Header {...this.props} />
+          <Switch>
+            {!logged_in && <Route exact path="/" component={CoinIndex} />}
+            {logged_in && <Route exact path="/" component={Home} />}
+          </Switch>
+        </Router>
       </>
     );
   }
