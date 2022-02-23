@@ -52,7 +52,7 @@ export default class Header extends Component {
                 )}
               </NavItem>
               <NavItem>
-                <a className="nav-link" href="https://github.com/reactstrap/reactstrap">GitHub</a>
+                <a className="nav-link" href="https://github.com/FakeMoneyBoysDev/MoneyCat" target="_blank">GitHub</a>
               </NavItem>
             </Nav>
           </Collapse>
