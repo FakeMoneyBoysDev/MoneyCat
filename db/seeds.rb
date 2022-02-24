@@ -1,7 +1,7 @@
-
+User.create(username: 'Demetrius Ford', email: 'demet8@gmail.com', password: 'sdlearn123')
 Coin.create([ 
     {
-    coin_gecko_id: 'usd-coin',
+    user_id: 1,
     name: 'USD Coin',
     ticker: 'usdc',
     logo: "https://assets.coingecko.com/coins/images/6319/large/USD_Coin_icon.png?1547042389",
@@ -10,7 +10,7 @@ Coin.create([
     price_change_percentage_24h: -0.05595
     },
     {
-    coin_gecko_id: 'bitcoin',
+    user_id: 1,
     name: 'Bitcoin',
     ticker: 'btc',
     logo: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579",
@@ -19,7 +19,7 @@ Coin.create([
     price_change_percentage_24h: -2.57162
     },
     {
-    coin_gecko_id: 'ethereum',
+    user_id: 1,
     name: 'Ethereum',
     ticker: 'eth',
     logo:"https://assets.coingecko.com/coins/images/279/large/ethereum.png?1595348880",
@@ -28,7 +28,7 @@ Coin.create([
     price_change_percentage_24h: -4.51115
     },
     {
-    coin_gecko_id: 'binancecoin',
+    user_id: 1,
     name: 'BNB',
     ticker: 'bnb',
     logo: "https://assets.coingecko.com/coins/images/825/large/bnb-icon2_2x.png?1644979850",
@@ -37,7 +37,7 @@ Coin.create([
     price_change_percentage_24h: -2.34678
     },
     {
-    coin_gecko_id: 'dogecoin',
+    user_id: 1,
     name: 'Dogecoin',
     ticker: 'doge',
     logo: "https://assets.coingecko.com/coins/images/5/large/dogecoin.png?1547792256",
