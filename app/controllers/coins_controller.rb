@@ -1,6 +1,6 @@
 class CoinsController < ApplicationController
     def index 
-        render json: Coin.all
+        render json: Coin.where(user_id: current_user.id)
     end
 
     def show
