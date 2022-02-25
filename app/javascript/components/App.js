@@ -19,8 +19,8 @@ class App extends Component {
         <Router>
           <Header {...this.props} />
           <Switch>
-            {!logged_in && <Route exact path="/" component={CoinIndex} />}
-            {logged_in && <Route exact path="/" component={Home} />}
+            {logged_in && <Route exact path="/" component={CoinIndex} />}
+            {!logged_in && <Route exact path="/" component={Home} />}
           </Switch>
         </Router>
       </>
