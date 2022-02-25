@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import CoinIndex from "./pages/CoinIndex";
 import Home from "./pages/Home";
+import CoinEdit from "./pages/CoinEdit";
 
 import Header from "./components/Header";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -21,6 +22,9 @@ class App extends Component {
           <Switch>
             {logged_in && <Route exact path="/" component={CoinIndex} />}
             {!logged_in && <Route exact path="/" component={Home} />}
+            {logged_in && (
+              <Route exact path="/coins/:id/edit" component={CoinEdit} />
+            )}
           </Switch>
         </Router>
       </>
