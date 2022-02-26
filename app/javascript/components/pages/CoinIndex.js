@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import { NavLink } from "react-router-dom";
 export default function CoinIndex() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -26,13 +26,37 @@ export default function CoinIndex() {
     return <div>Loading...</div>;
   } else {
     return (
-      <ul>
-        {items.map((item) => (
-          <li key={item.id}>
-            {item.name} {item.price}
-          </li>
-        ))}
-      </ul>
+      <table className="table">
+        <thead className="table-light">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {items.map((item) => (
+            <tr key={item.id}>
+              <td>{item.name}</td>
+              <td>{item.price}</td>
+              <td>
+                <NavLink to={`/coins/${item.id}`} className="btn btn-primary">
+                  Show
+                </NavLink>
+              </td>
+              <td>
+                <NavLink
+                  to={`/coins/${item.id}/edit`}
+                  className="btn btn-secondary"
+                >
+                  Edit
+                </NavLink>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     );
   }
 }

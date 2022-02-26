@@ -41,18 +41,25 @@ export default class Header extends Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              {/* <NavItem>
-                <NavLink href="/users/sign_in">Sign In</NavLink>
-              </NavItem> */}
               <NavItem>
                 {logged_in ? (
-                  <a className="nav-link" href={sign_out_route}>Sign Out</a>
+                  <a className="nav-link" href={sign_out_route}>
+                    Sign Out
+                  </a>
                 ) : (
-                  <a className="nav-link" href={sign_in_route}>Sign In</a>
+                  <a className="nav-link" href={sign_in_route}>
+                    Sign In
+                  </a>
                 )}
               </NavItem>
               <NavItem>
-                <a className="nav-link" href="https://github.com/FakeMoneyBoysDev/MoneyCat" target="_blank">GitHub</a>
+                <a
+                  className="nav-link"
+                  href="https://github.com/FakeMoneyBoysDev/MoneyCat"
+                  target="_blank"
+                >
+                  GitHub
+                </a>
               </NavItem>
             </Nav>
           </Collapse>
