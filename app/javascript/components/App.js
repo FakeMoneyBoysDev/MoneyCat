@@ -4,8 +4,8 @@ import Home from "./pages/Home";
 import CoinEdit from "./pages/CoinEdit";
 import ShowCoin from "./pages/ShowCoin";
 import NewCoin from "./pages/NewCoin";
-
 import Header from "./components/Header";
+import "./pages/ShowCoin.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 class App extends Component {
