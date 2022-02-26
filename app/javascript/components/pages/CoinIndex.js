@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 export default function CoinIndex() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -41,17 +41,23 @@ export default function CoinIndex() {
               <td>{item.name}</td>
               <td>{item.price}</td>
               <td>
-                <NavLink to={`/coins/${item.id}`} className="btn btn-primary">
+                <Link
+                  to={{ pathname: `/coins/${item.id}`, state: { coin: item } }}
+                  className="btn btn-primary"
+                >
                   Show
-                </NavLink>
+                </Link>
               </td>
               <td>
-                <NavLink
-                  to={`/coins/${item.id}/edit`}
+                <Link
+                  to={{
+                    pathname: `/coins/${item.id}/edit`,
+                    state: { coin: item },
+                  }}
                   className="btn btn-secondary"
                 >
                   Edit
-                </NavLink>
+                </Link>
               </td>
             </tr>
           ))}

@@ -25,6 +25,11 @@ export default class CoinEdit extends Component {
     );
   }
   render() {
-    return <div>Edit Coin {this.render_form()}</div>;
+    const coin = this.props.location.state.coin;
+    return (
+      <div>
+        Edit {coin.name} {this.render_form()}
+      </div>
+    );
   }
 }

@@ -11,6 +11,8 @@ import {
 
 export default class ShowCoin extends Component {
   render() {
-    return <div>Show Coin</div>;
+    const coin = this.props.location.state.coin;
+
+    return <div>Show {coin.name}</div>;
   }
 }
