@@ -45,7 +45,7 @@ export default function CoinIndex() {
                   to={{ pathname: `/coins/${item.id}`, state: { coin: item } }}
                   className="btn btn-primary"
                 >
-                  Show
+                  More Info
                 </Link>
               </td>
               <td>
