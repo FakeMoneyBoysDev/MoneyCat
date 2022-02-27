@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe "Coins API Controller", type: :request do
+  let!(:coins) { [btc, eth, doge] }
+  let!(:btc) { Coin.create!(ticker: "btc") }
+  let!(:doge) { Coin.create!(ticker: "doge") }
+  let!(:eth) { Coin.create!(ticker: "eth") }
+  let(:json) { JSON.parse(response.body) }
   let!(:user) do
     User.create(email: "foo@example.com", password: "piano123", password_confirmation: "piano123")
   end
@@ -10,11 +15,6 @@ RSpec.describe "Coins API Controller", type: :request do
   end
 
   describe "GET /api/index (Index)" do
-    let!(:coins) { [btc, eth, doge] }
-    let!(:btc) { Coin.create(ticker: "btc") }
-    let!(:doge) { Coin.create(ticker: "doge") }
-    let!(:eth) { Coin.create(ticker: "eth") }
-    let(:json) { JSON.parse(response.body) }
 
     before do
       get "/api/coins"
@@ -54,7 +54,20 @@ RSpec.describe "Coins API Controller", type: :request do
       get "/api/coins/#{coin_id}"
     end
 
-    xit "returns one coin"
+    context "when invalid coin_id" do
+      let(:coin_id) { "invalid" }
+      it "returns one coin" do
+        expect(json).to eq nil
+      end
+    end
+
+
+    context "when valid coin_id" do
+      let(:coin_id) { btc.id }
+      it "returns one coin" do
+        expect(json["ticker"]).to eq "btc"
+      end
+    end
 
     xit "returns the expected JSON format"
 
