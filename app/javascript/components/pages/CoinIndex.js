@@ -6,7 +6,7 @@ export default function CoinIndex() {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    fetch("/api/coins")
+    fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd")
       .then((res) => res.json())
       .then(
         (result) => {
@@ -29,17 +29,22 @@ export default function CoinIndex() {
       <table className="table">
         <thead className="table-light">
           <tr>
+            <th scope="col"></th>
             <th scope="col">Name</th>
             <th scope="col">Price</th>
-            <th scope="col"></th>
             <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
           {items.map((item) => (
             <tr key={item.id}>
+              <td>
+                <img src={item.image}
+                style={{ height: 20, margin: "auto" }}
+                ></img>
+              </td>
               <td>{item.name}</td>
-              <td>{item.price}</td>
+              <td>${item.current_price.toLocaleString()}</td>
               <td>
                 <Link
                   to={{ pathname: `/coins/${item.id}`, state: { coin: item } }}
