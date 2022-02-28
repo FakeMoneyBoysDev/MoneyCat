@@ -40,7 +40,8 @@ class CoinsController < ApplicationController
   private
 
   def coin_params
-    params.require(:coins).permit(:name, :ticker, :logo, :price, :price_change_24h, :user_id,
-                                  :price_change_percentage_24h)
+    params
+      .require(:coin)
+      .permit(:quantity)
   end
 end
