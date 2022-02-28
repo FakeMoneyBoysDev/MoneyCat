@@ -39,8 +39,9 @@ export default function CoinIndex() {
           {items.map((item) => (
             <tr key={item.id}>
               <td>
-                <img src={item.image}
-                style={{ height: 20, margin: "auto" }}
+                <img
+                  src={item.image}
+                  style={{ height: 20, margin: "auto" }}
                 ></img>
               </td>
               <td>{item.name}</td>
