@@ -1,0 +1,22 @@
+require:
+  - rubocop-rspec
+  - rubocop-rails
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - "bin/*"
+    - "node_modules/**/*"
+    - "vendor/**/*"
+
+Rails:
+  Enabled: true
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Rails/HttpStatus:
+  Enabled: false
