@@ -28,7 +28,7 @@ export default function CoinIndex() {
         (result) => {
           setIsLoaded(true);
           const hash = {}
-          result.forEach(r => hash[r.ticker] = r.price)
+          result.forEach(r => hash[r.ticker] = r.quantity)
           setMyCoins(hash);
         },
         (error) => {
