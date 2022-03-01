@@ -33,6 +33,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
+  gem 'simplecov', require: false
+
 end
 
 group :development do
