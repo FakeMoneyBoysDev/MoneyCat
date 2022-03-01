@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import CoinIndex from "./pages/CoinIndex";
 import Home from "./pages/Home";
+import AboutUs from "./pages/AboutUs";
 import CoinEdit from "./pages/CoinEdit";
 import ShowCoin from "./pages/ShowCoin";
 import NewCoin from "./pages/NewCoin";
@@ -34,6 +35,7 @@ class App extends Component {
             {logged_in && (
               <Route exact path="/coins/:id/edit" component={CoinEdit} />
             )}
+            {logged_in && <Route exact path="/aboutus/" component={AboutUs} />}
           </Switch>
           <Footer {...this.props} />
         </Router>

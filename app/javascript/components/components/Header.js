@@ -61,6 +61,11 @@ export default class Header extends Component {
                   GitHub
                 </a>
               </NavItem>
+              <NavItem>
+                <a className="nav-link" href="/aboutus" target="_blank">
+                  AboutUs
+                </a>
+              </NavItem>
             </Nav>
           </Collapse>
         </Navbar>
