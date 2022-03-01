@@ -15,16 +15,6 @@ class App extends Component {
   constructor(props) {
     super(props);
   }
-  updateCoin = (updateCoin) => {
-    fetch("http://localhost:3000/coins", {
-      body: JSON.stringify(updateCoin),
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "PUT",
-    }).then((response) => response.json());
-  };
-
   render() {
     const {
       logged_in,

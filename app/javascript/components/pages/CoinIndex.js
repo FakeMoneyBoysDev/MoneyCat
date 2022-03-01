@@ -4,7 +4,7 @@ export default function CoinIndex() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
-  const [myCoins, setMyCoins] = useState({})
+  const [myCoins, setMyCoins] = useState({});
 
   useEffect(() => {
     fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd")
@@ -20,15 +20,15 @@ export default function CoinIndex() {
         }
       );
   }, []);
- 
+
   useEffect(() => {
     fetch("/api/coins")
       .then((res) => res.json())
       .then(
         (result) => {
           setIsLoaded(true);
-          const hash = {}
-          result.forEach(r => hash[r.ticker] = r.quantity)
+          const hash = {};
+          result.forEach((myCoin) => (hash[myCoin.ticker] = myCoin));
           setMyCoins(hash);
         },
         (error) => {
@@ -67,11 +67,23 @@ export default function CoinIndex() {
               </td>
               <td>{item.name}</td>
               <td>${item.current_price.toLocaleString()}</td>
-              <td>{myCoins[item.symbol] && myCoins[item.symbol].toLocaleString()}</td>
-              <td>{myCoins[item.symbol] && "$" + (myCoins[item.symbol] * item.current_price).toLocaleString()}</td>
+              <td>
+                {myCoins[item.symbol] &&
+                  myCoins[item.symbol].quantity.toLocaleString()}
+              </td>
+              <td>
+                {myCoins[item.symbol] &&
+                  "$" +
+                    (
+                      myCoins[item.symbol].quantity * item.current_price
+                    ).toLocaleString()}
+              </td>
               <td>
                 <Link
-                  to={{ pathname: `/coins/${item.id}`, state: { coin: item } }}
+                  to={{
+                    pathname: `/coins/${item.id}`,
+                    state: { coin: item, myCoin: myCoins[item.symbol] },
+                  }}
                   className="btn btn-primary"
                 >
                   More Info
@@ -81,7 +93,7 @@ export default function CoinIndex() {
                 <Link
                   to={{
                     pathname: `/coins/${item.id}/edit`,
-                    state: { coin: item },
+                    state: { coin: item, myCoin: myCoins[item.symbol] },
                   }}
                   className="btn btn-secondary"
                 >

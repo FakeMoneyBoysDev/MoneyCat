@@ -12,27 +12,52 @@ import {
 export default class CoinEdit extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      coin: {
-        quantity: "",
-      },
+      ...this.props.location.state,
       submitted: false,
     };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.updateCoin = this.updateCoin.bind(this);
   }
 
-  handleChange = (e) => {
-    console.log(e.target.value);
-    let { updateCoin } = this.state;
-    updateCoin[e.target.name] = e.target.value;
-    this.setState({ updateCoin: updateCoin });
-  };
+  updateCoin() {
+    const {
+      myCoin: { id, quantity },
+    } = this.state;
+
+    fetch(`/api/coins/${id}`, {
+      body: JSON.stringify({ coin: { quantity } }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "PATCH",
+    })
+      .then((response) => response.json())
+      .then((payload) => console.log("success", payload));
+  }
+
+  handleChange(e) {
+    const { myCoin } = this.state;
+
+    myCoin[e.target.name] = e.target.value;
+
+    this.setState({ myCoin });
+  }
 
   handleSubmit = () => {
-    this.props.updateCoin(this.state.coin);
+    this.updateCoin();
+
     this.setState({ submitted: true });
   };
 
   render_form() {
+    const {
+      myCoin: { quantity },
+    } = this.state;
+
     return (
       <Form>
         <FormGroup row>
@@ -40,10 +65,16 @@ export default class CoinEdit extends Component {
             Quantity
           </Label>
           <Col sm={10}>
-            <Input type="text" name="quantity" id="quantity" />
+            <Input
+              type="text"
+              name="quantity"
+              id="quantity"
+              value={quantity}
+              onChange={this.handleChange}
+            />
           </Col>
         </FormGroup>
-        <Button color="primary" onClick={this.updateCoin}>
+        <Button color="primary" onClick={this.handleSubmit}>
           update
         </Button>
       </Form>
