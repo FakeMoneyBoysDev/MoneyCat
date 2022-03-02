@@ -5,9 +5,6 @@ import Header from "./components/Header";
 import ShowCoin from "./pages/ShowCoin";
 import CoinEdit from "./pages/CoinEdit";
 
-require("jest-fetch-mock").enableMocks();
-
-
 Enzyme.configure({ adapter: new Adapter() });
 
 describe("when the header loads...", () => {
@@ -22,7 +19,6 @@ describe("when the header loads...", () => {
     expect(a.length).toEqual(3);
   });
 });
-
 
 /*describe("when the coin loads...", () => {
   let coin;
