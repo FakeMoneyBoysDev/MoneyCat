@@ -92,7 +92,9 @@ export default class CoinEdit extends Component {
 
     return (
       <div>
-        Edit {coin.name} {this.render_form()}
+        <h2>
+          Edit {coin.name} {this.render_form()}
+        </h2>
       </div>
     );
   }

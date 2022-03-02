@@ -11,6 +11,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "reactstrap";
+import MoneyCat from "./moneycat-logo.svg";
 
 export default class Header extends Component {
   constructor(props) {
@@ -37,7 +38,9 @@ export default class Header extends Component {
     return (
       <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">Money Cat</NavbarBrand>
+          <NavbarBrand href="/">
+            <img src={MoneyCat} width="70px" />
+          </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -59,6 +62,11 @@ export default class Header extends Component {
                   target="_blank"
                 >
                   GitHub
+                </a>
+              </NavItem>
+              <NavItem>
+                <a className="nav-link" href="/aboutus" target="_blank">
+                  AboutUs
                 </a>
               </NavItem>
             </Nav>

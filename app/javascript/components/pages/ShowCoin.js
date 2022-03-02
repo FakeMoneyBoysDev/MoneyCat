@@ -83,12 +83,14 @@ export default class ShowCoin extends Component {
               style={{ height: 200, margin: "auto" }}
             />
             <CardText>
+
               Ticker: {coin.symbol}
               <br></br>Current Price: $
               {coin.current_price.toLocaleString()}
               <br></br>
               24 Hour Price Change: $
               {coin.price_change_24h.toLocaleString()}
+
               <br></br>
               24 Hour Price Percentage Change: %
               {coin.price_change_percentage_24h}
