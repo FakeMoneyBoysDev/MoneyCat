@@ -47,6 +47,7 @@ RSpec.describe "Coins API Controller", type: :request do
   end
 
   describe "GET /api/coins/:id (Show)" do
+    let!(:btc) { Coin.create!(ticker: "btc", user_id: user.id) }
     let(:coin_id) { 1 }
 
     before do
@@ -55,6 +56,7 @@ RSpec.describe "Coins API Controller", type: :request do
 
     context "when invalid coin_id" do
       let(:coin_id) { "invalid" }
+
       it "returns one coin" do
         expect(json).to eq nil
       end
@@ -62,14 +64,19 @@ RSpec.describe "Coins API Controller", type: :request do
 
     context "when valid coin_id" do
       let(:coin_id) { btc.id }
+
       it "returns one coin" do
         expect(json["ticker"]).to eq "btc"
       end
     end
 
-    xit "returns the expected JSON format"
+    context "when valid ticker" do
+      let(:coin_id) { "btc" }
 
-    xit "returns the coin for the given id"
+      it "returns one coin" do
+        expect(json["ticker"]).to eq "btc"
+      end
+    end
   end
 
   describe "POST /api/coins (Create)" do

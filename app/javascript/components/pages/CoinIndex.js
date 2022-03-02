@@ -68,32 +68,29 @@ export default function CoinIndex() {
               <td>{item.name}</td>
               <td>${item.current_price.toLocaleString()}</td>
               <td>
-                {myCoins[item.symbol] &&
-                  myCoins[item.symbol].quantity.toLocaleString()}
+                {myCoins[item.id] &&
+                  myCoins[item.id].quantity.toLocaleString()}
               </td>
               <td>
-                {myCoins[item.symbol] &&
+                {myCoins[item.id] &&
                   "$" +
                     (
-                      myCoins[item.symbol].quantity * item.current_price
+                      myCoins[item.id].quantity * item.current_price
                     ).toLocaleString()}
               </td>
               <td>
                 <Link
-                  to={{
-                    pathname: `/coins/${item.id}`,
-                    state: { coin: item, myCoin: myCoins[item.symbol] },
-                  }}
+                  to={`/coins/${item.id}`}
                   className="btn btn-primary"
                 >
                   More Info
                 </Link>
               </td>
               <td>
-                {myCoins[item.symbol] && <Link
+                {myCoins[item.id] && <Link
                   to={{
                     pathname: `/coins/${item.id}/edit`,
-                    state: { coin: item, myCoin: myCoins[item.symbol] },
+                    state: { coin: item, myCoin: myCoins[item.id] },
                   }}
                   className="btn btn-secondary"
                 >
