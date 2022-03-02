@@ -25,7 +25,7 @@ class App extends Component {
       sign_out_route,
     } = this.props;
     return (
-      <>
+      <div id="logInWrapper">
         <Router>
           <Header {...this.props} />
           <Switch>
@@ -42,7 +42,7 @@ class App extends Component {
           </Switch>
           <Footer {...this.props} />
         </Router>
-      </>
+      </div>
     );
   }
 }
