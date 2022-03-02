@@ -61,7 +61,6 @@ RSpec.describe "Coins API Controller", type: :request do
       end
     end
 
-
     context "when valid coin_id" do
       let(:coin_id) { btc.id }
       it "returns one coin" do
@@ -99,27 +98,48 @@ RSpec.describe "Coins API Controller", type: :request do
   end
 
   describe "PUT /api/coins/:id (Update)" do
-    let(:coin_id) { 1 }
-    let(:params) { {} }
+    let(:coin_id) { btc.id }
+    let(:params) { { coin: { quantity: quantity } } }
+    let(:quantity) { nil }
 
     before do
-      put "/api/coins/#{coin_id}", params
+      put "/api/coins/#{coin_id}", params: params
     end
 
-    context "when valid" do
-      let(:params) { {} }
+    context "when valid quantity" do
+      let(:quantity) { 123 }
 
-      xit "updates the new coin"
+      it "updates the coin quantity" do
+        expect(btc.reload.quantity).to eq 123
+      end
 
-      xit "returns the updated coin"
+      it "returns the updated coin" do
+        expect(json["quantity"]).to eq 123
+      end
+    end
+
+    context "when nil quantity" do
+      let(:quantity) { nil }
+
+      it "updates the coin quantity" do
+        expect(btc.reload.quantity).to eq nil
+      end
+
+      it "returns the updated coin" do
+        expect(json["quantity"]).to eq nil
+      end
     end
 
     context "when invalid" do
-      let(:params) { { foo: "bar" } }
+      let(:quantity) { "foobar" }
 
-      xit "returns a 422 status"
+      it "updates the coin quantity" do
+        expect(btc.reload.quantity).to eq 0.0
+      end
 
-      xit "returns an error message"
+      it "returns the updated coin" do
+        expect(json["quantity"]).to eq 0.0
+      end
     end
   end
 
