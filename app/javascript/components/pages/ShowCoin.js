@@ -1,7 +1,23 @@
 import React, { Component } from "react";
-import { Col, Card, CardTitle, CardText } from "reactstrap";
+import { Col, Card, CardTitle, CardFooter, Button, CardText } from "reactstrap";
 
 export default class ShowCoin extends Component {
+  constructor(props) {
+    super(props);
+    this.handleDelete = this.handleDelete.bind(this);
+  }
+
+  handleDelete() {
+    const { myCoin } = this.props.location.state;
+    fetch(`/api/coins/${myCoin.id}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "DELETE",
+    })
+      .then((response) => response.json())
+      .then((payload) => console.log("success"));
+  }
   render() {
     const coin = this.props.location.state.coin;
 
@@ -18,13 +34,18 @@ export default class ShowCoin extends Component {
             />
             <CardText>
               Ticker: {coin && coin.symbol}
-              <br></br>Current Price: ${coin && coin.current_price.toLocaleString()}
+              <br></br>Current Price: $
+              {coin && coin.current_price.toLocaleString()}
               <br></br>
-              24 Hour Price Change: ${coin && coin.price_change_24h.toLocaleString()}
+              24 Hour Price Change: $
+              {coin && coin.price_change_24h.toLocaleString()}
               <br></br>
               24 Hour Price Percentage Change: %
               {coin && coin.price_change_percentage_24h}
             </CardText>
+            <CardFooter>
+              <Button onClick={this.handleDelete}>Delete</Button>
+            </CardFooter>
           </Card>
         </Col>
       </div>
