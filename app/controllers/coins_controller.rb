@@ -9,7 +9,7 @@ class CoinsController < ApplicationController
   end
 
   def create
-    coin = Coin.create(coin_params)
+    coin = Coin.create(coin_params.merge(user_id: current_user.id))
     if coin.valid?
       render json: coin
     else
@@ -42,6 +42,6 @@ class CoinsController < ApplicationController
   def coin_params
     params
       .require(:coin)
-      .permit(:quantity)
+      .permit(:quantity, :ticker)
   end
 end
