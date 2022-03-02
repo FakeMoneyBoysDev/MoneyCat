@@ -90,7 +90,7 @@ export default function CoinIndex() {
                 </Link>
               </td>
               <td>
-                <Link
+                {myCoins[item.symbol] && <Link
                   to={{
                     pathname: `/coins/${item.id}/edit`,
                     state: { coin: item, myCoin: myCoins[item.symbol] },
@@ -98,7 +98,7 @@ export default function CoinIndex() {
                   className="btn btn-secondary"
                 >
                   Edit
-                </Link>
+                </Link>}
               </td>
             </tr>
           ))}
