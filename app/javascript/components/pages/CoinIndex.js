@@ -62,8 +62,8 @@ export default function CoinIndex() {
               <td>
                 <img
                   src={item.image}
-                  style={{ height: 20, margin: "auto" }}
-                ></img>
+                  style={{ height: "20px", marginLeft: "20px" }}
+                />
               </td>
               <td>{item.name}</td>
               <td>${item.current_price.toLocaleString()}</td>

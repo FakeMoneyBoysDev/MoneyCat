@@ -16,24 +16,25 @@ describe("when the header loads...", () => {
 
   it("displays a navlink on the header", () => {
     const a = header.find("a");
-    expect(a.length).toEqual(2);
+    expect(a.length).toEqual(3);
   });
 });
+const mockCoin = { location: { coin: {} } };
 
-/*describe("when the coin loads...", () => {
+describe("when the coin loads...", () => {
   let coin;
 
   beforeEach(() => {
-    coin = shallow(<ShowCoin />);
+    coin = shallow(<ShowCoin location={mockCoin} />);
   });
 
   it("displays a coin", () => {
-    const cardtext = ShowCoin.find("cardtext");
-    expect(cardtext.length).toEqual(2);
+    const CardTitle = ShowCoin.find("CardTitle");
+    expect(CardTitle.length).toEqual(2);
   });
 });
-*/
-describe("when the page loads a header is displayed...", () => {
+
+/*describe("when the page loads a header is displayed...", () => {
   let coinEdit;
 
   beforeEach(() => {
@@ -45,3 +46,4 @@ describe("when the page loads a header is displayed...", () => {
     expect(h2.length).toEqual(2);
   });
 });
+*/
