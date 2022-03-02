@@ -15,7 +15,6 @@ RSpec.describe "Coins API Controller", type: :request do
   end
 
   describe "GET /api/index (Index)" do
-
     before do
       get "/api/coins"
     end
@@ -74,26 +73,29 @@ RSpec.describe "Coins API Controller", type: :request do
   end
 
   describe "POST /api/coins (Create)" do
-    let(:params) { {} }
+    let(:my_btc) { Coin.find_by(ticker: "btc", user_id: user.id) }
+    let(:params) { { coin: { ticker: "btc", quantity: 123 } } }
 
     before do
-      post "/api/coins", params
+      post "/api/coins", params: params
     end
 
     context "when valid" do
-      let(:params) { {} }
+      it "creates a new coin with the given quantity" do
+        expect(my_btc.quantity).to eq 123
+      end
 
-      xit "creates a new coin"
+      it "returns the quantity" do
+        expect(json["quantity"]).to eq 123
+      end
 
-      xit "returns the created coin"
-    end
+      it "returns the ticker" do
+        expect(json["ticker"]).to eq "btc"
+      end
 
-    context "when invalid" do
-      let(:params) { { foo: "bar" } }
-
-      xit "returns a 422 status"
-
-      xit "returns an error message"
+      it "returns the user_id" do
+        expect(json["user_id"]).to eq user.id.to_s
+      end
     end
   end
 
