@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 import "./pages/ShowCoin.css";
 import "./components/Footer.css";
 import "./components/Header.css";
+import "./pages/AboutUs.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 class App extends Component {
