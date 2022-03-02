@@ -5,6 +5,11 @@ import { Redirect } from "react-router-dom";
 export default class ShowCoin extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      redirect: false
+    }
+
     this.handleCreate = this.handleCreate.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
   }
@@ -20,7 +25,7 @@ export default class ShowCoin extends Component {
       method: "POST",
     })
       .then((response) => response.json())
-      .then((payload) => console.log("success", payload));
+      .then((payload) => this.setState({ redirect: true }));
   }
 
   handleDelete() {
@@ -32,11 +37,11 @@ export default class ShowCoin extends Component {
       method: "DELETE",
     })
       .then((response) => response.json())
-      .then((payload) => console.log("success"));
+      .then((payload) => this.setState({ redirect: true }));
   }
 
   render() {
-    if(!this.props.location.state) return <Redirect to="/" />
+    if(!this.props.location.state || this.state.redirect) return <Redirect to="/" />
 
     const { coin, myCoin } = this.props.location.state;
 
