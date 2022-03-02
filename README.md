@@ -1,48 +1,33 @@
-$ rails new MoneyCat -d postgresql -T
-$ cd MoneyCat
-$ rails db:create
-Add the remote from your GitHub classroom repository
-Create a default branch (main)
-Make an initial commit to the repository
-$ bundle add rspec-rails
-$ rails generate rspec:install
-$ bundle add devise
-$ rails generate devise:install
-$ rails generate devise User
-$ bundle add react-rails
-$ rails webpacker:install:react
-$ rails generate react:install
-$ rails generate react:component App
-$ rails generate controller Home
-$ rails db:migrate
-$ rails s
+# Money Cat
 
+## Overview — Why did you start this project?
 
-config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+Everyone should have the ability to make mistakes without bankrupting themselves while in the infancy of their trading journey.
 
+## Features — What are some key things your project can do?
 
-app/views/home/index.html.erb
+You have a simulated environment with a fluctuating market price of your crypto wallet that allows you to accept the bull and bear markets and how to respond for maximum profits.
 
-<%= react_component 'App', {
-  logged_in: user_signed_in?,
-  current_user: current_user,
-  new_user_route: new_user_registration_path,
-  sign_in_route: new_user_session_path,
-  sign_out_route: destroy_user_session_path
-} %>
+## Running the project — How could someone else get your code working for them?
 
+- open terminal
+- cd desktop
+- git clone https://github.com/FakeMoneyBoysDev/MoneyCat.git
+- bundle
+- jest
+- yarn
+- yarn start
+- rails s
+- open local host 3000 in the browser
 
-config/routes.rb
+## Dependencies — What are the main outside resources your project needs to run?
 
-Rails.application.routes.draw do
-  get '*path', to: 'home#index', constraints: ->(request){ request.format.html? }
-  root 'home#index'
-end
-
-
-config/initializers/devise.rb
-
-# Find this line:
-config.sign_out_via = :delete
-# and replace it with this:
-config.sign_out_via = :get
+- bundle
+- rails
+- bootstrap
+- rake
+- setup
+- spring
+- webpack
+- webpack-dev-server
+- yarn
