@@ -7,18 +7,27 @@ export default class ShowCoin extends Component {
     super(props);
 
     this.state = {
+      coin: null,
+      myCoin: null,
       redirect: false
     }
 
     this.handleCreate = this.handleCreate.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.loadCoins = this.loadCoins.bind(this);
+    this.loadMyCoins = this.loadMyCoins.bind(this);
+  }
+
+  componentDidMount() {
+    this.loadCoins();
+    this.loadMyCoins();
   }
 
   handleCreate() {
-    const { coin, myCoin } = this.props.location.state;
+    const { coin } = this.state;
 
     fetch(`/api/coins`, {
-      body: JSON.stringify({ coin: { quantity: 0, ticker: coin.symbol } }),
+      body: JSON.stringify({ coin: { quantity: 0, ticker: coin.id } }),
       headers: {
         "Content-Type": "application/json",
       },
@@ -29,7 +38,8 @@ export default class ShowCoin extends Component {
   }
 
   handleDelete() {
-    const { myCoin } = this.props.location.state;
+    const { myCoin } = this.state;
+
     fetch(`/api/coins/${myCoin.id}`, {
       headers: {
         "Content-Type": "application/json",
@@ -40,12 +50,26 @@ export default class ShowCoin extends Component {
       .then((payload) => this.setState({ redirect: true }));
   }
 
+  async loadCoins() {
+    const { id } = this.props.match.params;
+
+    fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${id}`)
+      .then((response) => response.json())
+      .then((payload) => this.setState({ coin: payload[0] }));
+  }
+
+  async loadMyCoins() {
+    fetch("/api/coins/")
+      .then((response) => response.json())
+      .then((payload) => this.setState({ myCoin: payload[0] }));
+  }
+
   render() {
-    if(!this.props.location.state || this.state.redirect) return <Redirect to="/" />
+    const { id } = this.props.match.params;
+    const { coin, myCoin, redirect } = this.state;
 
-    const { coin, myCoin } = this.props.location.state;
-
-    if(!coin) return <div>Invalid Coin</div>
+    if(redirect) return <Redirect to="/" />
+    if(!coin) return <div>Loading...</div>
 
     return (
       <div className="body">

@@ -4,7 +4,9 @@ class CoinsController < ApplicationController
   end
 
   def show
-    coin = Coin.find_by(id: params[:id])
+    coin = Coin.find_by(id: params[:id], user_id: current_user.id) ||
+      Coin.find_by(ticker: params[:id], user_id: current_user.id)
+
     render json: coin
   end
 
