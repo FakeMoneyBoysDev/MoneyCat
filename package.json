@@ -2,7 +2,7 @@
   "name": "money-cat",
   "private": true,
   "jest": {
-    "automock": false
+    
   },
   "scripts": {
     "jest": "jest app/javascript --collect-coverage"
@@ -35,7 +35,7 @@
   },
   "version": "0.1.0",
   "devDependencies": {
-    "jest-fetch-mock": "^3.0.3",
+    
     "webpack-dev-server": "^3"
   }
 }
