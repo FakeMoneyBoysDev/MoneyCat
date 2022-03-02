@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe "Coins API Controller", type: :request do
   let!(:coins) { [btc, eth, doge] }
-  let!(:btc) { Coin.create!(ticker: "btc") }
-  let!(:doge) { Coin.create!(ticker: "doge") }
-  let!(:eth) { Coin.create!(ticker: "eth") }
+  let!(:btc) { Coin.create!(ticker: "bitcoin") }
+  let!(:doge) { Coin.create!(ticker: "dogecoin") }
+  let!(:eth) { Coin.create!(ticker: "etherum") }
   let(:json) { JSON.parse(response.body) }
   let!(:user) do
     User.create(email: "foo@example.com", password: "piano123", password_confirmation: "piano123")
@@ -36,18 +36,18 @@ RSpec.describe "Coins API Controller", type: :request do
     end
 
     context "when the current user has coins" do
-      let!(:btc) { Coin.create(ticker: "btc", user: user) }
+      let!(:btc) { Coin.create(ticker: "bitcoin", user: user) }
       let!(:coins) { [btc, eth, doge] }
-      let!(:eth) { Coin.create(ticker: "eth", user: user) }
+      let!(:eth) { Coin.create(ticker: "etherum", user: user) }
 
       it "returns a list of coins for our user" do
-        expect(json.map { |coin| coin["ticker"] }.sort).to eq ["btc", "eth"]
+        expect(json.map { |coin| coin["ticker"] }.sort).to eq ["bitcoin", "etherum"]
       end
     end
   end
 
   describe "GET /api/coins/:id (Show)" do
-    let!(:btc) { Coin.create!(ticker: "btc", user_id: user.id) }
+    let!(:btc) { Coin.create!(ticker: "bitcoin", user_id: user.id) }
     let(:coin_id) { 1 }
 
     before do
@@ -66,22 +66,22 @@ RSpec.describe "Coins API Controller", type: :request do
       let(:coin_id) { btc.id }
 
       it "returns one coin" do
-        expect(json["ticker"]).to eq "btc"
+        expect(json["ticker"]).to eq "bitcoin"
       end
     end
 
     context "when valid ticker" do
-      let(:coin_id) { "btc" }
+      let(:coin_id) { "bitcoin" }
 
       it "returns one coin" do
-        expect(json["ticker"]).to eq "btc"
+        expect(json["ticker"]).to eq "bitcoin"
       end
     end
   end
 
   describe "POST /api/coins (Create)" do
-    let(:my_btc) { Coin.find_by(ticker: "btc", user_id: user.id) }
-    let(:params) { { coin: { ticker: "btc", quantity: 123 } } }
+    let(:my_btc) { Coin.find_by(ticker: "bitcoin", user_id: user.id) }
+    let(:params) { { coin: { ticker: "bitcoin", quantity: 123 } } }
 
     before do
       post "/api/coins", params: params
@@ -97,7 +97,7 @@ RSpec.describe "Coins API Controller", type: :request do
       end
 
       it "returns the ticker" do
-        expect(json["ticker"]).to eq "btc"
+        expect(json["ticker"]).to eq "bitcoin"
       end
 
       it "returns the user_id" do
