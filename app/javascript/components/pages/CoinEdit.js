@@ -8,6 +8,7 @@ import {
   Input,
   FormText,
 } from "reactstrap";
+import { Redirect } from "react-router-dom";
 
 export default class CoinEdit extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ export default class CoinEdit extends Component {
 
     this.state = {
       ...this.props.location.state,
+      redirect: false,
       submitted: false,
     };
 
@@ -36,7 +38,7 @@ export default class CoinEdit extends Component {
       method: "PATCH",
     })
       .then((response) => response.json())
-      .then((payload) => console.log("success", payload));
+      .then((payload) => this.setState({ redirect: true }));
   }
 
   handleChange(e) {
@@ -50,7 +52,7 @@ export default class CoinEdit extends Component {
   handleSubmit = () => {
     this.updateCoin();
 
-    this.setState({ submitted: true });
+    this.setState({ submitted: true })
   };
 
   render_form() {
@@ -75,14 +77,19 @@ export default class CoinEdit extends Component {
           </Col>
         </FormGroup>
         <Button color="primary" onClick={this.handleSubmit}>
-          update
+          Update
         </Button>
       </Form>
     );
   }
 
   render() {
-    const coin = this.props.location.state.coin;
+    if(!this.props.location.state || this.state.redirect) return <Redirect to="/" />
+
+    const { coin, myCoin } = this.props.location.state;
+
+    if(!coin) return <div>Invalid Coin</div>
+
     return (
       <div>
         Edit {coin.name} {this.render_form()}

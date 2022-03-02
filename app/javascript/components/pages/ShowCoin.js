@@ -72,7 +72,7 @@ export default class ShowCoin extends Component {
             {myCoin &&<CardText>
               Quantity: {myCoin.quantity}
               <br />
-              Value: ${(myCoin.quantity & coin.current_price).toLocaleString()}
+              Value: ${(myCoin.quantity * coin.current_price).toLocaleString()}
             </CardText>}
             <CardFooter>
               {myCoin && <button onClick={this.handleDelete} className="btn btn-danger">Delete</button>}
