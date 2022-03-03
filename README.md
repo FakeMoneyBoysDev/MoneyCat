@@ -31,3 +31,6 @@ You have a simulated environment with a fluctuating market price of your crypto 
 - webpack
 - webpack-dev-server
 - yarn
+
+LINK TO OUR APP:
+https://money-cat-production.herokuapp.com/
